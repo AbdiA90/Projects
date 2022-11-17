@@ -25,14 +25,18 @@ public class Blackjack {
         int dealerTotal= Math.min(dealerCard1,10) + Math.min(dealerCard2, 10);
         
         while (true) {
-            int newDraw = drawRandomCard();
             String hit = hitOrStay();
-            if (hit.equals("stay")) {
+            
+            int newDraw = drawRandomCard();
+            
+            if (hit.equalsIgnoreCase("stay")) {
                 break;
+
            }else{
                 System.out.println("\n You get a \n" + cardString(newDraw));
                 total += Math.min(newDraw, 10);
                 System.out.println("Your total is " + total);
+                
                 if(total > 21){
                     System.out.println("Bust! Player loses.");
                     System.exit(0);
@@ -50,6 +54,7 @@ public class Blackjack {
 
         while (dealerTotal < 17) {
             int newCard = drawRandomCard();
+            
             System.out.println("\nDealer gets a a\n" + cardString(newCard));
             dealerTotal += Math.min(newCard,10);
             System.out.println("\nDealer's total is " + dealerTotal);
@@ -62,6 +67,7 @@ public class Blackjack {
 
         if (total > dealerTotal) {
             System.out.println("Player Wins!");
+
         }else {
             System.out.println("Dealer Wins");
         }
@@ -198,8 +204,10 @@ public class Blackjack {
         while (true) {
             if (hitOrStay.equalsIgnoreCase("stay")){
                 break;
+
             }else if (hitOrStay.equalsIgnoreCase("hit")){
                 break;
+                
             }else{
                 System.out.println("Please try again. Please write 'hit' or 'stay'");
                 hitOrStay = scan.nextLine();
