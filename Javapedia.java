@@ -6,11 +6,11 @@ public class Javapedia {
         System.out.println("\n**********Javapedia**********");
         System.out.println("How many historical figures will you register?");
         
-        int store = scan.nextInt();
+        int figures = scan.nextInt();
         scan.nextLine();
         
         
-        String[][] database = new String[store][3];
+        String[][] database = new String[figures][3];
          
         
         for (int i = 0; i < database.length; i++) {
