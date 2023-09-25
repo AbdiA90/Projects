@@ -1,0 +1,306 @@
+/*
+* 
+*  
+* Using vector iterators
+*/
+
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+/*
+* Function name: binarySearch
+*parameter(vector <int>, int)
+* return (int)
+* Inside the function:
+* 1. does a binary search for input vector and returns the element of the number you
+*
+*/
+int binarySearch(vector<int> grades, int findVal);
+
+int main()
+{
+	int binaryResult = -1;
+	string yesOrNo;
+	string sortSelection;
+	int sizeOfVector;
+	int intUserInput;
+	float sum = 0;
+	float sum2 = 0;
+	bool condition = true;
+	vector <int> grades = { 25,65,55,75,99,78,100,80,90,85 };
+	
+	vector<int>::iterator gradesItr = grades.begin();
+	vector<int>::iterator gradesItr2 = grades.end();
+
+	vector <int> grades4;
+	vector <int> ::reverse_iterator gradesR;
+	
+	cout << "\nGrades: ";
+	for (vector<int>::iterator i = grades.begin(); i < grades.end(); i++)
+	{
+		cout << *i << " ";
+	}
+	cout << endl;
+
+	
+	grades.insert(gradesItr, 6);
+	
+	
+	
+	cout << "\nNew value inserted into grades: ";
+	for (vector<int>::iterator i = grades.begin(); i < grades.end(); i++)
+	{
+		cout << *i << " ";
+	}
+	cout << endl;
+
+	
+	gradesItr = grades.begin();
+	gradesItr++;
+	grades.erase(gradesItr);
+	
+	cout << "\nSecond element erased from grades: ";
+	for (vector<int>::iterator i = grades.begin(); i < grades.end(); i++)
+	{
+		cout << *i << " ";
+	}
+	cout << endl;
+
+	
+
+	vector <int> grades2 = grades;
+	vector <int> ::iterator grades2Itr = grades.begin();
+	
+	cout << "\nHigh to Low grades2: ";
+	sort(grades2.begin(), grades2.end(), greater<int>()); 
+	for (vector<int>::iterator i = grades2.begin(); i < grades2.end(); i++)
+	{
+		cout << *i << " ";
+	}
+	cout << endl;
+	
+
+	cout << "\nEnter the size of vector of original user grades3: ";
+	cin >> sizeOfVector;
+	vector <int> grades3;
+
+	cout << "\nInput the values of your elements in the vector user grades with integers that are between 0 and 100: " << endl;
+	for (int i = 0; i < sizeOfVector; i++)
+	{
+		bool done = true; 
+		while (done)
+		{
+			cout << "\nFill element " << i << " with a grade of: ";
+			cin >> intUserInput;
+			if (intUserInput >= 0 && intUserInput <= 100)
+			{
+				grades3.push_back(intUserInput);
+				done = false;
+			}
+			else
+			{
+				cout << "\nInvalid grade trying" << endl;
+			}
+		}
+		cout << endl;
+	}
+
+	cout << "\nOriginal user grade3: ";
+	for (vector<int>::iterator i = grades3.begin(); i < grades3.end(); i++)
+	{
+		cout << *i << " ";
+	}
+	cout << endl;
+	
+	for (vector<int>::iterator i = grades3.begin(); i < grades3.end(); i++)
+	{
+		sum += *i;
+		
+	}
+	cout << "\nThe average of original user grade3: " << sum / grades3.size() << endl;
+
+	cout << "\nWould you like to sort user grades3 high to low input 'high' or low to high input 'low': ";
+	cin >> sortSelection;
+
+	if (sortSelection == "high" || sortSelection == "High")
+	{
+		sort(grades3.begin(), grades3.end(), greater<int>());
+
+		cout << "\nUser grade3 vector sorted high to low: ";
+		for (vector<int>::iterator i = grades3.begin(); i < grades3.end(); i++)
+		{
+			cout << *i << " ";
+		}
+		cout << endl;
+		
+	} 
+	else if (sortSelection == "low" || sortSelection == "Low") 
+	{
+		sort(grades3.begin(), grades3.end());
+
+		cout << "\nUser grade3 vector sorted low to high: ";
+		for (vector<int>::iterator i = grades3.begin(); i < grades3.end(); i++)
+		{
+			cout << *i << " ";
+		}
+		cout << endl;
+	}
+	else
+	{
+		cout << "\ninvalid selection" << endl;
+	}
+
+	
+
+	cout << "\n\tWelcome to Vector menu" << endl;
+	cout << "\t1)Set grades into a new vector" << endl;
+	cout << "\t2)Outputing the new grade vector backwards after inputting into option 1" << endl;
+	cout << "\t3)Output the new average grade of the new vector after inputting option 1" << endl;
+	cout << "\t4)Using binary search find user selected grade and change its value after inputting option 1" << endl;
+
+	cout << "\nWhat option from the vector menu would you like: ";
+	cin >> intUserInput;
+	while (condition)
+	{
+		switch (intUserInput)
+		{
+		case 1:
+			cout << "\nEnter the size of vector of new grade vector: ";
+			cin >> sizeOfVector;
+
+
+			cout << "\nInput the grades into the elements of the new grade vector with integers that are between 0 and 100: " << endl;
+			for (int i = 0; i < sizeOfVector; i++)
+			{
+				bool done = true;
+				while (done)
+				{
+					cout << "\nFill element " << i << " with a grade of: ";
+					cin >> intUserInput;
+					if (intUserInput >= 0 && intUserInput <= 100)
+					{
+						grades4.push_back(intUserInput);
+						done = false;
+					}
+					else
+					{
+						cout << "\nInvalid grade trying" << endl;
+					}
+				}
+				cout << endl;
+			}
+			cout << "\nWould you like to continue 'yes' or 'no': ";
+			cin >> yesOrNo;
+			
+			if (yesOrNo == "no" || yesOrNo == "No")
+			{
+				condition = false;
+			}
+			else if (yesOrNo == "yes" || yesOrNo == "Yes")
+			{
+				cout << "\nWhat option would you like: ";
+				cin >> intUserInput;
+			}
+			break;
+		case 2:
+			grades4.begin();
+			cout << "\nThe new grade vector backwards is: "; 
+			                                                 
+			gradesR = grades4.rbegin();
+			while (gradesR != grades4.rend())
+			{
+				cout << *gradesR << " ";
+				gradesR++;
+			}
+			cout << endl;
+			cout << "\nWould you like to continue 'yes' or 'no': ";
+			cin >> yesOrNo;
+
+			if (yesOrNo == "no" || yesOrNo == "No")
+			{
+				condition = false;
+			}
+			else if (yesOrNo == "yes" || yesOrNo == "Yes")
+			{
+				cout << "\nWhat option would you like: ";
+				cin >> intUserInput;
+			}
+			break;
+		case 3:
+			for (vector<int>::iterator i = grades4.begin(); i < grades4.end(); i++)
+			{
+				sum2 += *i;
+
+			}
+			cout << "\nThe average of the grade vector is: " << sum2 / grades4.size() << endl;
+			
+			cout << "\nWould you like to continue 'yes' or 'no': ";
+			cin >> yesOrNo;
+
+			if (yesOrNo == "no" || yesOrNo == "No")
+			{
+				condition = false;
+			}
+			break;
+		case 4:
+			cout << "What value would like to look at: ";
+			cin >> intUserInput;
+			binaryResult = binarySearch(grades4, intUserInput); 
+			if (binaryResult != -1)
+				{
+					cout << "\nBinary search results are, the grade " << intUserInput << " is found at element [" << binaryResult << "]" << endl;
+				}
+				else
+				{
+					cout << "Results not found" << endl;
+					exit(0);
+				}
+			cout << "\nWould you like to continue 'yes' or 'no': ";
+			cin >> yesOrNo;
+
+			if (yesOrNo == "no" || yesOrNo == "No")
+			{
+				condition = false;
+			}
+			break;
+
+		default:
+			cout << "\nInvalid option" << endl;
+			condition = false;
+		}
+	}
+
+
+
+	return 0;
+}
+
+int binarySearch(vector<int> grades, int findVal)
+{
+	vector <int> ::iterator firstIndex = grades.begin();
+	vector <int> ::iterator middleIndex;
+	vector <int> ::iterator lastIndex = grades.end();
+
+	while (firstIndex != lastIndex)
+	{
+		*middleIndex = *firstIndex + (*lastIndex - *firstIndex) / 2;
+
+		if (*middleIndex == findVal)
+		{
+			return *middleIndex;
+		}
+		else if (*middleIndex > findVal)
+		{
+			lastIndex = middleIndex - 1;
+		}
+		else if (*middleIndex < findVal)
+		{
+			*firstIndex = *middleIndex + 1;
+		}
+	}
+	return -1;
+}
